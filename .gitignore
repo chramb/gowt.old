@@ -1,0 +1,29 @@
+# C extensions
+src/**/*.so
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.coverage.*
+.cache
+
+# documentation
+/site
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.idea/
+.vscode/
