@@ -41,6 +41,7 @@ test = [
     "mypy",
     "flit",
 ]
+all = ["gowt[test]", "gowt[dev]"]
 
 [project.urls]
 homepage = "https://github.com/chramb/gowt"
@@ -49,17 +50,21 @@ repository = "https://github.com/chramb/gowt.git"
 [project.scripts]
 gowt = "gowt.__main__:main"
 
+[tool.flit.sdist]
+include = [ "py.typed"]
+
 
 [tool.mypy]
+mypy_path = ["stubs"]
 strict = true
 check_untyped_defs = true
 disallow_any_generics = true
 disallow_incomplete_defs = true
 disallow_untyped_defs = true
 no_implicit_optional = true
-
-ignore_missing_imports = true
-disallow_untyped_decorators = false
+ignore_missing_imports = false
+disallow_untyped_decorators = true
+exclude = ["venv"]
 
 [tool.black]
 line-length = 140
@@ -67,7 +72,7 @@ line-length = 140
 [tool.isort]
 profile = "black"
 add_imports = "from __future__ import annotations"
-skip = "__init__.py,tests"
+skip = "__init__.py,tests,stubs"
 known_local = ["gowt"]
 sections = ["FUTURE","STDLIB", "THIRDPARTY", "LOCAL"]
 import_heading_stdlib = "Standard Library imports"
@@ -91,4 +96,4 @@ skip_empty = true
 [tool.coverage.run]
 branch = true
 source = ["."]
-omit = ["tests", "venv"]
+omit = ["tests", "venv", "stubs"]
