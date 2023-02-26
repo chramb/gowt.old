@@ -15,9 +15,12 @@ classifiers = [
     "Intended Audience :: System Administrators",
     "License :: OSI Approved :: The Unlicense (Unlicense)",
     "Operating System :: POSIX",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Version Control :: Git",
 ]
 dependencies = [
@@ -59,6 +62,7 @@ line-length = 140
 [tool.isort]
 profile = "black"
 add_imports = "from __future__ import annotations"
+skip = "__init__.py"
 known_local = ["gowt"]
 sections = ["FUTURE","STDLIB", "THIRDPARTY", "LOCAL"]
 import_heading_stdlib = "Standard Library imports"
