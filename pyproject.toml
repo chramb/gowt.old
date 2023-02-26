@@ -25,16 +25,21 @@ classifiers = [
 ]
 dependencies = [
     "pkgcore",
-    "snakeoil"
+    "snakeoil",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pre-commit",
-    "mypy",
     "black",
     "flake8",
-    "flake8-pyproject"
+    "flake8-pyproject",
+]
+test = [
+    "pytest",
+    "coverage",
+    "mypy",
+    "flit",
 ]
 
 [project.urls]
@@ -62,7 +67,7 @@ line-length = 140
 [tool.isort]
 profile = "black"
 add_imports = "from __future__ import annotations"
-skip = "__init__.py"
+skip = "__init__.py,tests"
 known_local = ["gowt"]
 sections = ["FUTURE","STDLIB", "THIRDPARTY", "LOCAL"]
 import_heading_stdlib = "Standard Library imports"
@@ -74,3 +79,16 @@ lines_between_sections = 1
 
 [tool.flake8]
 max-line-length = 140
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "if __debug__:",
+    "if __name__ == [\"']__main__[\"']:$",
+]
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+source = ["."]
+omit = ["tests", "venv"]
