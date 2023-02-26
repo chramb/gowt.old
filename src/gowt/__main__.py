@@ -17,8 +17,8 @@ from gowt import __version__
 # TODO: figure out how to omit type imports (annotations)
 from pkgcore.config.central import ConfigManager  # isort: skip
 from pkgcore.ebuild.domain import domain  # isort: skip
-from pkgcore.ebuild.repository import UnconfiguredTree  # isort: skip
 from pkgcore.repository.filtered import tree as filtered_tree  # isort: skip
+from pkgcore.repository.prototype import tree as prototype_tree  # isort: skip
 from snakeoil.cli.arghparse import Namespace  # isort: skip
 
 
@@ -41,7 +41,7 @@ def _get_repo(parser: ArgumentParser, namespace: Namespace) -> None:
         ).strip()
         raise parser.error(msg)
 
-    repo: UnconfiguredTree
+    repo: prototype_tree
     try:
         if namespace.repo is None:
             _domain: domain = namespace.domain
@@ -50,7 +50,7 @@ def _get_repo(parser: ArgumentParser, namespace: Namespace) -> None:
         else:
             repo = namespace.domain.find_repo(path=namespace.repo, config=namespace.config)
     except (repo_errors.InitializationError, OSError) as e:
-        raise parser.error(e)
+        raise parser.error(str(e)) from e
 
     if repo is None:
         raise parser.error(f"Not in ebuild repo, please specify repo location with --repo/-C or run {__name__} from repo")
