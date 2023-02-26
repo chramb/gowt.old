@@ -13,12 +13,13 @@ from pkgcore.util.commandline import ArgumentParser, Tool
 # Local imports
 from gowt import __version__
 
-# Type imports
-from pkgcore.ebuild.domain import domain  # isort:skip
-from pkgcore.config.central import ConfigManager  # isort:skip
-from pkgcore.repository.filtered import tree as filtered_tree  # isort:skip
-from pkgcore.ebuild.repository import UnconfiguredTree  # isort:skip
-from snakeoil.cli.arghparse import Namespace  # isort:skip
+if __debug__:
+    # Type imports
+    from pkgcore.ebuild.domain import domain  # isort:skip
+    from pkgcore.config.central import ConfigManager  # isort:skip
+    from pkgcore.repository.filtered import tree as filtered_tree  # isort:skip
+    from pkgcore.ebuild.repository import UnconfiguredTree  # isort:skip
+    from snakeoil.cli.arghparse import Namespace  # isort:skip
 
 
 argparser = ArgumentParser()
@@ -60,6 +61,7 @@ def _get_repo(parser: ArgumentParser, namespace: Namespace) -> None:
 @argparser.bind_main_func
 def _main(options: Namespace, out, err) -> None:  # type: ignore
     _repo: filtered_tree = options.repo
+    print(__debug__)
     print(_repo.aliases)
 
 
