@@ -1,0 +1,3 @@
+from ..repository import prototype
+
+class UnconfiguredTree(prototype.tree): ...
