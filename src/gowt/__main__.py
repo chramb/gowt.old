@@ -13,13 +13,13 @@ from pkgcore.util.commandline import ArgumentParser, Tool
 # Local imports
 from gowt import __version__
 
-if __debug__:
-    # Type imports
-    from pkgcore.ebuild.domain import domain  # isort:skip
-    from pkgcore.config.central import ConfigManager  # isort:skip
-    from pkgcore.repository.filtered import tree as filtered_tree  # isort:skip
-    from pkgcore.ebuild.repository import UnconfiguredTree  # isort:skip
-    from snakeoil.cli.arghparse import Namespace  # isort:skip
+# Type imports
+# TODO: figure out how to omit type imports (annotations)
+from pkgcore.config.central import ConfigManager  # isort: skip
+from pkgcore.ebuild.domain import domain  # isort: skip
+from pkgcore.ebuild.repository import UnconfiguredTree  # isort: skip
+from pkgcore.repository.filtered import tree as filtered_tree  # isort: skip
+from snakeoil.cli.arghparse import Namespace  # isort: skip
 
 
 argparser = ArgumentParser()
