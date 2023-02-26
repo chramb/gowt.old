@@ -45,9 +45,9 @@ def _get_repo(parser: ArgumentParser, namespace: Namespace) -> None:
         if namespace.repo is None:
             _domain: domain = namespace.domain
             _config: ConfigManager = namespace.config
-            repo = _domain.add_repo(path=os.getcwd(), config=_config)
+            repo = _domain.find_repo(path=os.getcwd(), config=_config)
         else:
-            repo = namespace.domain.add_repo(path=namespace.repo, config=namespace.config)
+            repo = namespace.domain.find_repo(path=namespace.repo, config=namespace.config)
     except (repo_errors.InitializationError, OSError) as e:
         raise parser.error(e)
 
