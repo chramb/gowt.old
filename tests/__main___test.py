@@ -2,11 +2,12 @@ import pytest
 import gowt.__main__
 
 
-def test_main_error(capsys) -> None:
-    print(type(capsys))
+def test_main_error(capsys: pytest.CaptureFixture[str]) -> None:
     # TODO: main() -> run(), _main() -> main()
     with pytest.raises(SystemExit) as exit_info:
         gowt.__main__.main()
+        out: str
+        err: str
         out, err = capsys.readouterr()
         assert out == ""
         errmsg: str = f"""
