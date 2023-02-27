@@ -22,7 +22,7 @@ from pkgcore.repository.prototype import tree as prototype_tree  # isort: skip
 from snakeoil.cli.arghparse import Namespace  # isort: skip
 
 
-argparser = ArgumentParser()
+argparser: ArgumentParser = ArgumentParser()
 argparser.add_argument("--version", "-V", action="version", version=f"gowt: {__version__}", help="print version and exit")  # noqa: E501
 argparser.add_argument("--repo", "-r", "-C", action="store", help="repository location")
 argparser.add_argument("--gentoo", action="store", help="::gentoo repository location")
@@ -30,6 +30,15 @@ argparser.add_argument("--gentoo", action="store", help="::gentoo repository loc
 
 @argparser.bind_final_check
 def _get_repo(parser: ArgumentParser, namespace: Namespace) -> None:
+    """
+    Get repository object into the namespace.
+
+    :param parser: a parser thingy
+    :type parser: ArgumentParser
+    :param namespace: namespace thingy
+    :type namespace: Namespace
+    :return: None adds repo to `namespace` so no need to return anything
+    """
     if namespace.gentoo:
         namespace.domain.add_repo(path=namespace.gentoo, config=namespace.config)
     elif "gentoo" not in namespace.domain.repos:
@@ -60,12 +69,40 @@ def _get_repo(parser: ArgumentParser, namespace: Namespace) -> None:
 
 @argparser.bind_main_func
 def _main(options: Namespace, out, err) -> None:  # type: ignore
+    """
+    Binding main function to `ArgumentParser` from `pkgcore <https://pkgcore.github.io/pkgcore/>`_
+
+    :param options:
+    :type options: Namespace
+    :param out:
+    :param err:
+    :return: None
+    """
     _repo: filtered_tree = options.repo
     print(__debug__)
     print(_repo.aliases)
 
 
 def main() -> None:
+    """
+    Entrypoint to run when importing as module.
+
+    :return: None
+
+    :Example:
+
+    Run from `python`:
+
+        >>> import gowt
+        >>> gowt.main()
+
+    Runs `gowt` but fails because specifying args is not implemented yet.
+
+    .. note::
+
+        Test note
+
+    """
     tool = Tool(argparser)
     raise SystemExit(tool())
 

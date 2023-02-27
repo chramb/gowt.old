@@ -41,6 +41,10 @@ test = [
     "mypy",
     "flit",
 ]
+docs = [
+    "sphinx",
+    "furo",
+]
 
 [project.urls]
 homepage = "https://github.com/chramb/gowt"
@@ -91,4 +95,4 @@ skip_empty = true
 [tool.coverage.run]
 branch = true
 source = ["."]
-omit = ["tests", "venv"]
+omit = ["tests/**", "venv/**"]
