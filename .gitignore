@@ -48,7 +48,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# documentation
+# Documentation
+_build/
 /site
 
 # Environments
