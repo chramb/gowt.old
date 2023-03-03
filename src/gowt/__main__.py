@@ -1,5 +1,7 @@
 """ GOWT cli """
 
+from __future__ import annotations
+
 from argparse import ArgumentParser
 from os import getcwd
 from pathlib import Path
