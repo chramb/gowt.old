@@ -59,7 +59,7 @@ line_length = 140
 lines_between_sections = 1
 
 [tool.ruff]
-extended-select = ["C4", "SIM", "TCH", "W", "I001"] # Default: E,F
+extend-select = ["C4", "SIM", "TCH", "W", "I001"] # Default: E,F
 ignore = []
 line-length = 140
 show-fixes = true
