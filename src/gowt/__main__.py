@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import itertools
 from argparse import ArgumentParser
+import itertools
 from os import getcwd
 from pathlib import Path
 
