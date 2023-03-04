@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import itertools
 from argparse import ArgumentParser
 from os import getcwd
 from pathlib import Path
@@ -23,8 +24,16 @@ def main() -> int:
         tree: UnconfiguredTree
         domain: Domain
         domain, tree = get_repo(repo_path)
-        print(domain.all_ebuild_repos_raw)
-        print(tree.packages)
+        if tree is not None:
+            # typing: off
+            repository = itertools.groupby(tree, lambda pkg: pkg.category)
+            for (
+                key,
+                cat,
+            ) in repository:
+                for p in cat:
+                    print(p.key, p.PV, sep="-")
+            # typing: on
     return 0
 
 
